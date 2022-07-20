@@ -1,6 +1,4 @@
-﻿using Raider.Domain.Enums;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Raider.Domain.Entities
 {
@@ -10,8 +8,10 @@ namespace Raider.Domain.Entities
         public string Name { get; set; }
         public string ClassId { get; set; }
         public bool IsMain { get; set; }
+        public Guid? MainId { get; set; }
         public bool IsSaved { get; set; }
 
-        public Class Class { get; set; } 
+        public Class Class { get; set; }
+        public Character? Main { get; set; }
     }
 }
