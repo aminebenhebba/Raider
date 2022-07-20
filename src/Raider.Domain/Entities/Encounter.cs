@@ -3,7 +3,7 @@ using System;
 
 namespace Raider.Domain.Entities
 {
-    public class Ancounters
+    public class Encounter
     {
         public Day Day { get; set; }
         public Guid RaidId { get; set; }
