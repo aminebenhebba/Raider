@@ -1,5 +1,4 @@
-﻿using Raider.Domain.Enums;
-using System;
+﻿using System;
 
 namespace Raider.Domain.Entities
 {
@@ -7,7 +6,7 @@ namespace Raider.Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public int PlayersCount { get; set; }
+        public int Players { get; set; }
         public string? Logo { get; set; }
     }
 }
