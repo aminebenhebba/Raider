@@ -7,6 +7,6 @@ namespace Raider.Domain.Entities
         public string Id { get; set; }
         public string? Icon { get; set; }
 
-        ICollection<Specialisation> Specialisations { get; set; }
+        public ICollection<Specialisation> Specialisations { get; set; }
     }
 }
