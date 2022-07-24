@@ -11,7 +11,6 @@
     <Folder Include="Models\" />
     <Folder Include="Components\" />
     <Folder Include="Data\" />
-    <Folder Include="Persistence\" />
     <Folder Include="Resources\Classes\" />
     <Folder Include="Resources\Roles\" />
     <Folder Include="Resources\Specialisations\" />
@@ -20,8 +19,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.7" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Raider.Domain\Raider.Domain.csproj" />
   </ItemGroup>
 
 </Project>

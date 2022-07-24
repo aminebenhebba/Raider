@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Raider.Wpf.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,6 +21,8 @@ namespace Raider.Wpf
             AppHost = Host.CreateDefaultBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddDbContext<RaiderDbContext>(options => options.UseSqlite("DataSource=Data\\Raider.db"));
+
                     services.AddSingleton<MainWindow>();
                 })
                 .Build();
