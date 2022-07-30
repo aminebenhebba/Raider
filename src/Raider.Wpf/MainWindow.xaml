@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Raider.Wpf"
         mc:Ignorable="d"
-        Title="Raider" Height="450" Width="800">
-    <Grid>
+        Title="Raider" Height="720" Width="1080" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True">
+    <Border Background="#EFF2F7" CornerRadius="30"
+            MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
 
-    </Grid>
+        </Grid>
+    </Border>
 </Window>
