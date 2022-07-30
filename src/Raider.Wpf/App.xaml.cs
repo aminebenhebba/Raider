@@ -33,6 +33,7 @@ namespace Raider.Wpf
             await AppHost.StartAsync();
 
             MainWindow = AppHost.Services.GetRequiredService<MainWindow>();
+            MainWindow.Resources.MergedDictionaries.Add(this.Resources);
             MainWindow.Show();
 
             base.OnStartup(e);

@@ -1,16 +1,162 @@
 ﻿<Window x:Class="Raider.Wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Raider.Wpf"
         mc:Ignorable="d"
         Title="Raider" Height="720" Width="1080" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" AllowsTransparency="True">
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Window.Resources>
+
     <Border Background="#EFF2F7" CornerRadius="30"
             MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+            <!--Left Menu-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Hamburger Icon-->
+                <Button Margin="20 28 0 35" Style="{StaticResource topButton}">
+                    <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
+                </Button>
+
+                <!--Menu-->
+                <Border Grid.Row="1" Background="#632ED0" CornerRadius="0 50 0 30">
+                    <DockPanel>
+                        <!--Menu Icon-->
+                        <Border Background="White" Padding="3" Width="80" Height="80" CornerRadius="80"
+                                DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="Resources/Logo.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+
+                        <!--Menu Title-->
+                        <TextBlock Text="WeeklyTetrisFails" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                   DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
+                        <TextBlock Text="End Game Guild" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold"
+                                   DockPanel.Dock="Top" TextAlignment="Center"/>
+
+                        <Separator Margin="25" DockPanel.Dock="Top" Height=".8" Background="#7E5FDC"/>
+
+                        <!--Menu Buttons-->
+                        <StackPanel DockPanel.Dock="Top">
+                            <Button Style="{StaticResource  menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Dashboard"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource  menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Calendar" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Events"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource  menuButton}" Background="#7B5CD6" Foreground="White">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Members"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource  menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="AxeBattle" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Classes"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource  menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="School" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Specialisations"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource  menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="BookRefreshOutline" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Roles"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource  menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="GoogleDownasaur" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Raids"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource  menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="HumanMaleFemaleChild" Style="{StaticResource  menuButtonIcon}"/>
+                                    <TextBlock Text="Setups"/>
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+
+                        <!--Close Button-->
+                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 10"
+                                Click="Button_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="Power" Style="{StaticResource  menuButtonIcon}"/>
+                                <TextBlock Text="Exit"/>
+                            </StackPanel>
+                        </Button>
+                    </DockPanel>
+                </Border>
+            </Grid>
+
+            <!--Main Section-->
+            <Grid Grid.Column="1" Margin="30 20 20 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!--Search Box-->
+                <Grid Width="300" HorizontalAlignment="left">
+                    <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                               Panel.ZIndex="1" Text="Search here ..."
+                               Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVisibility}}"/>
+                    <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}"/>
+                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                                           Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right"/>
+                </Grid>
+
+                <!--Top Buttons-->
+                <Button Style="{StaticResource topButton}" Margin="0 0 20 0" HorizontalAlignment="Right">
+                    <Icon:PackIconMaterial Kind="Cog"/>
+                </Button>
+
+                <Button Style="{StaticResource topButton}" Margin="0 0 55 0" HorizontalAlignment="Right">
+                    <Icon:PackIconMaterial Kind="ThemeLightDark"/>
+                </Button>
+
+            </Grid>
         </Grid>
     </Border>
+
 </Window>
