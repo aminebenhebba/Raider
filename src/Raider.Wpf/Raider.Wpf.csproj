@@ -24,8 +24,6 @@
     <Folder Include="Resources\Classes\" />
     <Folder Include="Resources\Roles\" />
     <Folder Include="Resources\Specialisations\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
   </ItemGroup>
 
   <ItemGroup>

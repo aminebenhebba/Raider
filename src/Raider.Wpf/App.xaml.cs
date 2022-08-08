@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Raider.Wpf.Persistence;
+using Raider.Wpf.Store;
+using Raider.Wpf.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,7 +25,9 @@ namespace Raider.Wpf
                 {
                     services.AddDbContext<RaiderDbContext>(options => options.UseSqlite("DataSource=Data\\Raider.db"));
 
+                    services.AddSingleton<INavigator, Navigator>();
                     services.AddSingleton<MainWindow>();
+                    services.AddSingleton<MainViewModel>();
                 })
                 .Build();
         }
@@ -34,6 +38,7 @@ namespace Raider.Wpf
 
             MainWindow = AppHost.Services.GetRequiredService<MainWindow>();
             MainWindow.Resources.MergedDictionaries.Add(this.Resources);
+            MainWindow.DataContext = AppHost.Services.GetRequiredService<MainViewModel>();
             MainWindow.Show();
 
             base.OnStartup(e);
@@ -42,7 +47,7 @@ namespace Raider.Wpf
         protected override async void OnExit(ExitEventArgs e)
         {
             await AppHost.StopAsync();
-
+            
             base.OnExit(e);
         }
     }
