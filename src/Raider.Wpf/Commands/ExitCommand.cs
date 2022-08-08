@@ -1,6 +1,4 @@
-﻿using Raider.Wpf.Store;
-
-namespace Raider.Wpf.Commands
+﻿namespace Raider.Wpf.Commands
 {
     public class ExitCommand : CommandBase
     {

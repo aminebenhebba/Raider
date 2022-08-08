@@ -1,5 +1,5 @@
 ﻿using Raider.Wpf.Commands;
-using Raider.Wpf.Commands.MainViewModel;
+using Raider.Wpf.Services;
 using Raider.Wpf.Store;
 using System.Windows.Input;
 
@@ -43,14 +43,14 @@ namespace Raider.Wpf.ViewModels
 
             _navigator.CurrentViewModelChanged += OnCurrentModelViewChanged;
 
-            DashboardCommand = new DashboardCommand(_navigator);
-            EventsCommand = new EventsCommand(_navigator);
-            MembersCommand = new MembersCommand(_navigator);
-            ClassesCommand = new ClassesCommand(_navigator);
-            SpecialisationsCommand = new SpecialisationsCommand(_navigator);
-            RolesCommand = new RolesCommand(_navigator);
-            RaidsCommand = new RaidsCommand(_navigator);
-            SetupsCommand = new SetupsCommand(_navigator);
+            DashboardCommand = new NavigateCommand<DashboardViewModel>(new NavigationService<DashboardViewModel>(_navigator, () => new DashboardViewModel()));
+            EventsCommand = new NavigateCommand<EventsViewModel>(new NavigationService<EventsViewModel>(_navigator, () => new EventsViewModel()));
+            MembersCommand = new NavigateCommand<MembersViewModel>(new NavigationService<MembersViewModel>(_navigator, () => new MembersViewModel()));
+            ClassesCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(_navigator, () => new ClassesViewModel()));
+            SpecialisationsCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(_navigator, () => new SpecialisationsViewModel()));
+            RolesCommand = new NavigateCommand<RolesViewModel>(new NavigationService<RolesViewModel>(_navigator, () => new RolesViewModel()));
+            RaidsCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(_navigator, () => new RaidsViewModel()));
+            SetupsCommand = new NavigateCommand<SetupsViewModel>(new NavigationService<SetupsViewModel>(_navigator, () => new SetupsViewModel()));
 
             ExitCommand = new ExitCommand();
         }
