@@ -8,20 +8,62 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Raider.db" />
+    <None Remove="Resources\Classes\Death Knight.png" />
+    <None Remove="Resources\Classes\Druid.png" />
+    <None Remove="Resources\Classes\Hunter.png" />
+    <None Remove="Resources\Classes\Mage.png" />
+    <None Remove="Resources\Classes\Paladin.png" />
+    <None Remove="Resources\Classes\Priest.png" />
+    <None Remove="Resources\Classes\Rogue.png" />
+    <None Remove="Resources\Classes\Shaman.png" />
+    <None Remove="Resources\Classes\Warlock.png" />
+    <None Remove="Resources\Classes\Warrior.png" />
     <None Remove="Resources\Logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\Raider.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Death Knight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Druid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Hunter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Mage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Paladin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Priest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Rogue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Shaman.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Warlock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Classes\Warrior.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Components\" />
-    <Folder Include="Data\" />
-    <Folder Include="Resources\Classes\" />
+    <Folder Include="Models\" />
     <Folder Include="Resources\Roles\" />
     <Folder Include="Resources\Specialisations\" />
   </ItemGroup>

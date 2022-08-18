@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Raider.Wpf.Persistence;
+using Raider.Wpf.Services;
 using Raider.Wpf.Store;
 using Raider.Wpf.ViewModels;
 using System;
@@ -28,6 +29,8 @@ namespace Raider.Wpf
                     services.AddSingleton<INavigator, Navigator>();
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<MainViewModel>();
+
+                    services.AddTransient<IClassDataService, ClassDataService>();
                 })
                 .Build();
         }

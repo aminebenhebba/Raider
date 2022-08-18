@@ -6,7 +6,6 @@
         xmlns:ViewModels="clr-namespace:Raider.Wpf.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Raider.Wpf"
         mc:Ignorable="d"
         Title="Raider" Height="720" Width="1080" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" AllowsTransparency="True">
@@ -38,6 +37,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:SetupsViewModel}">
             <Views:SetupsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:AddClassViewModel}">
+            <Views:AddClassView/>
         </DataTemplate>
 
     </Window.Resources>
