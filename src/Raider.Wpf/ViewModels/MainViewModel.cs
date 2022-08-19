@@ -1,6 +1,7 @@
 ﻿using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
 using Raider.Wpf.Store;
+using System;
 using System.Windows.Input;
 
 namespace Raider.Wpf.ViewModels
@@ -8,6 +9,8 @@ namespace Raider.Wpf.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private readonly INavigator _navigator;
+
+        public event Action? RequestClose;
 
         public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
         
@@ -52,12 +55,17 @@ namespace Raider.Wpf.ViewModels
             RaidsCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(_navigator, () => new RaidsViewModel()));
             SetupsCommand = new NavigateCommand<SetupsViewModel>(new NavigationService<SetupsViewModel>(_navigator, () => new SetupsViewModel()));
 
-            ExitCommand = new ExitCommand();
+            ExitCommand = new ExitCommand(this);
         }
 
         private void OnCurrentModelViewChanged()
         {
             OnPropertyChange(nameof(CurrentViewModel));
+        }
+
+        public void OnRequestClose()
+        {
+            RequestClose?.Invoke();
         }
     }
 }

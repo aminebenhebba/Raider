@@ -41,10 +41,20 @@ namespace Raider.Wpf
 
             MainWindow = AppHost.Services.GetRequiredService<MainWindow>();
             MainWindow.Resources.MergedDictionaries.Add(this.Resources);
-            MainWindow.DataContext = AppHost.Services.GetRequiredService<MainViewModel>();
+
+            var dataContext = AppHost.Services.GetRequiredService<MainViewModel>();
+            dataContext.RequestClose += CloseApplication;
+
+            MainWindow.DataContext = dataContext;
+
             MainWindow.Show();
 
             base.OnStartup(e);
+        }
+
+        private void CloseApplication()
+        {
+            MainWindow.Close();
         }
 
         protected override async void OnExit(ExitEventArgs e)
