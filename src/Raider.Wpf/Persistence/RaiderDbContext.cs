@@ -71,6 +71,9 @@ namespace Raider.Wpf.Persistence
                 entity.Property(e => e.Id)
                     .HasMaxLength(50);
 
+                entity.Property(e => e.Color)
+                    .HasMaxLength(7);
+
                 entity.Property(e => e.Icon)
                     .HasMaxLength(100);
 
