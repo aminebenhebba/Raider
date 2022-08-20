@@ -32,6 +32,7 @@ namespace Raider.Wpf
 
                     services.AddTransient<IClassDataService, ClassDataService>();
                     services.AddTransient<ISpecialisationDataService, SpecialisationDataService>();
+                    services.AddTransient<IRoleDataService, RoleDataService>();
                 })
                 .Build();
         }
