@@ -20,6 +20,36 @@
     <None Remove="Resources\Classes\Warlock.png" />
     <None Remove="Resources\Classes\Warrior.png" />
     <None Remove="Resources\Logo.png" />
+    <None Remove="Resources\Specialisations\Death Knight - Blood.png" />
+    <None Remove="Resources\Specialisations\Death Knight - Frost.png" />
+    <None Remove="Resources\Specialisations\Death Knight - Unholy.png" />
+    <None Remove="Resources\Specialisations\Druid - Balance.png" />
+    <None Remove="Resources\Specialisations\Druid - Feral.png" />
+    <None Remove="Resources\Specialisations\Druid - Restoration.png" />
+    <None Remove="Resources\Specialisations\Hunter - Beast Mastery.png" />
+    <None Remove="Resources\Specialisations\Hunter - Marksmanship.png" />
+    <None Remove="Resources\Specialisations\Hunter - Survival.png" />
+    <None Remove="Resources\Specialisations\Mage - Arcane.png" />
+    <None Remove="Resources\Specialisations\Mage - Fire.png" />
+    <None Remove="Resources\Specialisations\Mage - Frost.png" />
+    <None Remove="Resources\Specialisations\Paladin - Holy.png" />
+    <None Remove="Resources\Specialisations\Paladin - Protection.png" />
+    <None Remove="Resources\Specialisations\Paladin - Retribution.png" />
+    <None Remove="Resources\Specialisations\Priest - Discipline.png" />
+    <None Remove="Resources\Specialisations\Priest - Holy.png" />
+    <None Remove="Resources\Specialisations\Priest - Shadow.png" />
+    <None Remove="Resources\Specialisations\Rogue - Assassination.png" />
+    <None Remove="Resources\Specialisations\Rogue - Combat.png" />
+    <None Remove="Resources\Specialisations\Rogue - Subtlety.png" />
+    <None Remove="Resources\Specialisations\Shaman - Elemental.png" />
+    <None Remove="Resources\Specialisations\Shaman - Enhancement.png" />
+    <None Remove="Resources\Specialisations\Shaman - Restoration.png" />
+    <None Remove="Resources\Specialisations\Warlock - Affliction.png" />
+    <None Remove="Resources\Specialisations\Warlock - Demonology.png" />
+    <None Remove="Resources\Specialisations\Warlock - Distruction.png" />
+    <None Remove="Resources\Specialisations\Warrior - Arm.png" />
+    <None Remove="Resources\Specialisations\Warrior - Fury.png" />
+    <None Remove="Resources\Specialisations\Warrior - Protection.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,13 +89,102 @@
     <Content Include="Resources\Logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Specialisations\Death Knight - Blood.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Death Knight - Frost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Death Knight - Unholy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Druid - Balance.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Druid - Feral.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Druid - Restoration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Hunter - Beast Mastery.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Hunter - Marksmanship.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Hunter - Survival.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Mage - Arcane.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Mage - Fire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Mage - Frost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Paladin - Holy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Paladin - Protection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Paladin - Retribution.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Priest - Discipline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Priest - Holy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Priest - Shadow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Rogue - Assassination.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Rogue - Combat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Rogue - Subtlety.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Shaman - Elemental.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Shaman - Enhancement.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Shaman - Restoration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Warlock - Affliction.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Warlock - Demonology.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Warlock - Distruction.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Warrior - Arm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Warrior - Fury.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Specialisations\Warrior - Protection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\Roles\" />
-    <Folder Include="Resources\Specialisations\" />
   </ItemGroup>
 
   <ItemGroup>

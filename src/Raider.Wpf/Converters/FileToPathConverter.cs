@@ -9,13 +9,30 @@ namespace Raider.Wpf.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            if (value == null || parameter == null)
             {
                 return null;
             }
 
             var fileName = (string)value;
-            var path = $"/Resources/Classes/{fileName}";
+            
+            var fileType = (IconType)parameter;
+
+            // TODO: Probably default to :pepe_finger: icon ;)
+            var path = string.Empty;
+            switch (fileType)
+            {
+                case IconType.Class:
+                    path = $"/Resources/Classes/{fileName}";
+                    break;
+                case IconType.Specialisation:
+                    path = $"/Resources/Specialisations/{fileName}";
+                    break;
+                case IconType.Role:
+                    path = $"/Resources/Roles/{fileName}";
+                    break;
+            }
+
             return path;
         }
 

@@ -31,6 +31,7 @@ namespace Raider.Wpf
                     services.AddSingleton<MainViewModel>();
 
                     services.AddTransient<IClassDataService, ClassDataService>();
+                    services.AddTransient<ISpecialisationDataService, SpecialisationDataService>();
                 })
                 .Build();
         }

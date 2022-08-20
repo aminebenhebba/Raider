@@ -40,7 +40,7 @@ namespace Raider.Wpf.ViewModels
 
         public ICommand ExitCommand { get; }
 
-        public MainViewModel(INavigator navigator, IClassDataService classDataService)
+        public MainViewModel(INavigator navigator, IClassDataService classDataService, ISpecialisationDataService specialisationDataService)
         {
             _navigator = navigator;
 
@@ -50,7 +50,7 @@ namespace Raider.Wpf.ViewModels
             EventsCommand = new NavigateCommand<EventsViewModel>(new NavigationService<EventsViewModel>(_navigator, () => new EventsViewModel()));
             MembersCommand = new NavigateCommand<MembersViewModel>(new NavigationService<MembersViewModel>(_navigator, () => new MembersViewModel()));
             ClassesCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(_navigator, () => new ClassesViewModel(_navigator, classDataService)));
-            SpecialisationsCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(_navigator, () => new SpecialisationsViewModel()));
+            SpecialisationsCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(_navigator, () => new SpecialisationsViewModel(_navigator, specialisationDataService)));
             RolesCommand = new NavigateCommand<RolesViewModel>(new NavigationService<RolesViewModel>(_navigator, () => new RolesViewModel()));
             RaidsCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(_navigator, () => new RaidsViewModel()));
             SetupsCommand = new NavigateCommand<SetupsViewModel>(new NavigationService<SetupsViewModel>(_navigator, () => new SetupsViewModel()));
