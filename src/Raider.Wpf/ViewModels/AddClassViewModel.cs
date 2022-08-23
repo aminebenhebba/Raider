@@ -23,6 +23,17 @@ namespace Raider.Wpf.ViewModels
             set { _classIcon = value; }
         }
 
+        private string? _classColor;
+        public string? ClassColor
+        {
+            get { return _classColor; }
+            set
+            {
+                _classColor = value;
+                OnPropertyChange(nameof(ClassColor));
+            }
+        }
+
         public ICommand CreateClassCommand { get; }
         public ICommand CancelCreateCommand { get; }
 

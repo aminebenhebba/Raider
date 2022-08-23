@@ -23,6 +23,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" MinWidth="250" Margin="10 0">
@@ -66,10 +67,21 @@
                 </ComboBoxItem>
             </ComboBox>
 
-            <Button Grid.Column="2" Style="{StaticResource addButton}" Content="Add" Margin="10 0" Width="70" Height="30"
+            <Grid Grid.Column="2" MinWidth="100" Margin="10 0">
+                <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                                   Panel.ZIndex="1" Text="Color(#FFF)"
+                                   Visibility="{Binding ElementName=txtColor, Path=Text.IsEmpty, Converter={StaticResource BoolToVisibility}}"/>
+                <TextBox MaxLength="7" x:Name="txtColor" Style="{StaticResource textboxForm}" Text="{Binding ClassColor ,UpdateSourceTrigger=PropertyChanged}"/>
+                <Border Margin="2" Width="28" Height="28" CornerRadius="5" BorderBrush="#E0E6ED" BorderThickness="1"
+                        Background="{Binding ClassColor}" HorizontalAlignment="Right">
+                    
+                </Border>
+            </Grid>
+
+            <Button Grid.Column="3" Style="{StaticResource addButton}" Content="Add" Margin="10 0" Width="70" Height="30"
                     Command="{Binding CreateClassCommand}"/>
 
-            <Button Grid.Column="3" Style="{StaticResource addButton}" Content="Cancel" Margin="10 0" Width="70" Height="30"
+            <Button Grid.Column="4" Style="{StaticResource addButton}" Content="Cancel" Margin="10 0" Width="70" Height="30"
                     Command="{Binding CancelCreateCommand}"/>
 
         </Grid>
