@@ -1,6 +1,11 @@
 ﻿using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
 using Raider.Wpf.Store;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Raider.Wpf.ViewModels
@@ -13,14 +18,22 @@ namespace Raider.Wpf.ViewModels
         public string? ClassName
         {
             get { return _className; }
-            set { _className = value; }
+            set
+            {
+               _className = value;
+                OnPropertyChange(nameof(ClassName));
+            }
         }
 
         private string? _classIcon;
         public string? ClassIcon
         {
             get { return _classIcon; }
-            set { _classIcon = value; }
+            set
+            {
+                _classIcon = value;
+                OnPropertyChange(nameof(ClassIcon));
+            }
         }
 
         private string? _classColor;
@@ -34,6 +47,17 @@ namespace Raider.Wpf.ViewModels
             }
         }
 
+        private ObservableCollection<string> _iconList;
+        public ObservableCollection<string> IconList
+        {
+            get { return _iconList; }
+            set
+            {
+                _iconList = value;
+                OnPropertyChange(nameof(IconList));
+            }
+        }
+
         public ICommand CreateClassCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
@@ -41,7 +65,24 @@ namespace Raider.Wpf.ViewModels
         {
             _navigator = navigator;
 
+            var lisOfIcon = LoadClassIconList();
+
+            if (lisOfIcon.Any())
+            {
+                IconList = new ObservableCollection<string>(lisOfIcon);
+                ClassIcon = IconList[0];
+            }
+
             CancelCreateCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(_navigator, () => new ClassesViewModel(_navigator, classDataService)));
+
+            CreateClassCommand = new CreateClassCommand(new NavigationService<ClassesViewModel>(navigator, () => new ClassesViewModel(_navigator, classDataService)), this, classDataService);
+        }
+
+        private List<string>? LoadClassIconList()
+        {
+            var result = new List<string>(Directory.EnumerateFiles("./Resources/Classes").Select(file => Path.GetFileName(file)));
+
+            return result;
         }
     }
 }

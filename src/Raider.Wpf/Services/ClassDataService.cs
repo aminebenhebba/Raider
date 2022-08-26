@@ -19,5 +19,15 @@ namespace Raider.Wpf.Services
             var result = _context.Classes.ToList();
             return result;
         }
+
+        public void Add(Class newClass)
+        {
+            _context.Classes.Add(newClass);
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

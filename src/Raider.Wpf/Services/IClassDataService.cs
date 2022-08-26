@@ -6,5 +6,7 @@ namespace Raider.Wpf.Services
     public interface IClassDataService
     {
         List<Class> GetAll();
+        void Add(Class newClass);
+        void SaveChanges();
     }
 }
