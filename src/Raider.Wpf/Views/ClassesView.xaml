@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:converters="clr-namespace:Raider.Wpf.Converters"
+             x:Name="classesWindow"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Raider.Wpf.Views"
@@ -27,7 +28,7 @@
         <TextBlock Grid.Row="0" Text="Classes" FontSize="30" FontWeight="SemiBold" Margin="0 10 0 0"
                            HorizontalAlignment="Left" Foreground="#121518"/>
 
-        <!--Add Member Button-->
+        <!--Add Class Button-->
         <Button Grid.Row="0" Style="{StaticResource addButton}" Command="{Binding AddClassCommand}">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11"
@@ -36,8 +37,13 @@
             </StackPanel>
         </Button>
 
-        <!--Members Datagrid-->
-        <DataGrid Grid.Row="1" Margin="0 10 0 0" ItemsSource="{Binding Classes}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
+        <!--Classes Datagrid-->
+        <DataGrid Grid.Row="1" Margin="0 10 0 0" ItemsSource="{Binding Classes}"
+                  SelectedItem="{Binding SelectedItem}"
+                  Style="{DynamicResource DataGridStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  RowStyle="{DynamicResource DataGridRowStyle1}">
             <DataGrid.Columns>
                 
                 <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
@@ -81,7 +87,8 @@
                                 <Button Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
+                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0"
+                                        Command="{Binding DataContext.DeleteClassCommand, ElementName=classesWindow}">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>

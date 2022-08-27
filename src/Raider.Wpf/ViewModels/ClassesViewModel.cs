@@ -12,6 +12,8 @@ namespace Raider.Wpf.ViewModels
         private readonly INavigator _navigator;
         private readonly IClassDataService _classDataService;
         public ICommand AddClassCommand { get; }
+        public ICommand DeleteClassCommand { get; }
+        public Class SelectedItem { get; set; }
 
         public ObservableCollection<Class>? Classes { get; set; }
 
@@ -23,6 +25,7 @@ namespace Raider.Wpf.ViewModels
             Classes = new ObservableCollection<Class>(_classDataService.GetAll());
 
             AddClassCommand = new NavigateCommand<AddClassViewModel>(new NavigationService<AddClassViewModel>(_navigator, () => new AddClassViewModel(_navigator, classDataService)));
+            DeleteClassCommand = new DeleteClassCommand(this, classDataService);
         }
     }
 }

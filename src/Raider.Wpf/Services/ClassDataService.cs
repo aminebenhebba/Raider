@@ -25,6 +25,11 @@ namespace Raider.Wpf.Services
             _context.Classes.Add(newClass);
         }
 
+        public void Delete(Class selectedClass)
+        {
+            _context.Remove(selectedClass);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();

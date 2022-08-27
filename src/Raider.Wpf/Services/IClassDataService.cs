@@ -7,6 +7,7 @@ namespace Raider.Wpf.Services
     {
         List<Class> GetAll();
         void Add(Class newClass);
+        void Delete(Class selectedClass);
         void SaveChanges();
     }
 }
