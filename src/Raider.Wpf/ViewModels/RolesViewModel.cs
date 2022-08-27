@@ -9,12 +9,12 @@ namespace Raider.Wpf.ViewModels
     public class RolesViewModel : ViewModelBase
     {
         private readonly INavigator _navigator;
-        private readonly IRoleDataService _roleDataService;
+        private readonly IDataService<Role> _roleDataService;
         public ICommand AddRoleCommand { get; }
 
         public ObservableCollection<Role>? Roles { get; set; }
 
-        public RolesViewModel(INavigator navigator, IRoleDataService roleDataService)
+        public RolesViewModel(INavigator navigator, IDataService<Role> roleDataService)
         {
             _navigator = navigator;
             _roleDataService = roleDataService;

@@ -1,4 +1,5 @@
-﻿using Raider.Wpf.Commands;
+﻿using Raider.Domain.Entities;
+using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
 using Raider.Wpf.Store;
 using System;
@@ -41,9 +42,9 @@ namespace Raider.Wpf.ViewModels
         public ICommand ExitCommand { get; }
 
         public MainViewModel(INavigator navigator,
-            IClassDataService classDataService,
-            ISpecialisationDataService specialisationDataService,
-            IRoleDataService roleDataService)
+            IDataService<Class> classDataService,
+            IDataService<Specialisation> specialisationDataService,
+            IDataService<Role> roleDataService)
         {
             _navigator = navigator;
 

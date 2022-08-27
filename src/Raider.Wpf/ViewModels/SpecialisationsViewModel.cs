@@ -9,12 +9,12 @@ namespace Raider.Wpf.ViewModels
     public class SpecialisationsViewModel : ViewModelBase
     {
         private readonly INavigator _navigator;
-        private readonly ISpecialisationDataService _specialisationDataService;
+        private readonly IDataService<Specialisation> _specialisationDataService;
         public ICommand AddClassCommand { get; }
 
         public ObservableCollection<Specialisation>? Specialisations { get; set; }
 
-        public SpecialisationsViewModel(INavigator navigator, ISpecialisationDataService specialisationDataService)
+        public SpecialisationsViewModel(INavigator navigator, IDataService<Specialisation> specialisationDataService)
         {
             _navigator = navigator;
             _specialisationDataService = specialisationDataService;

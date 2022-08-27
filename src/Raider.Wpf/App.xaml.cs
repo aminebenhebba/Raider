@@ -1,16 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Raider.Domain.Entities;
 using Raider.Wpf.Persistence;
 using Raider.Wpf.Services;
 using Raider.Wpf.Store;
 using Raider.Wpf.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Raider.Wpf
@@ -30,9 +25,7 @@ namespace Raider.Wpf
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<MainViewModel>();
 
-                    services.AddTransient<IClassDataService, ClassDataService>();
-                    services.AddTransient<ISpecialisationDataService, SpecialisationDataService>();
-                    services.AddTransient<IRoleDataService, RoleDataService>();
+                    services.AddTransient(typeof(IDataService<>), typeof(DataService<>));
                 })
                 .Build();
         }

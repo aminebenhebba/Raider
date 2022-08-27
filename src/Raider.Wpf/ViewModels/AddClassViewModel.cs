@@ -1,7 +1,7 @@
-﻿using Raider.Wpf.Commands;
+﻿using Raider.Domain.Entities;
+using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
 using Raider.Wpf.Store;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -61,7 +61,7 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateClassCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddClassViewModel(INavigator navigator, IClassDataService classDataService)
+        public AddClassViewModel(INavigator navigator, IDataService<Class> classDataService)
         {
             _navigator = navigator;
 

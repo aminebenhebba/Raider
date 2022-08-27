@@ -1,4 +1,5 @@
-﻿using Raider.Wpf.Services;
+﻿using Raider.Domain.Entities;
+using Raider.Wpf.Services;
 using Raider.Wpf.ViewModels;
 
 namespace Raider.Wpf.Commands
@@ -6,9 +7,9 @@ namespace Raider.Wpf.Commands
     internal class DeleteClassCommand : CommandBase
     {
         private readonly ClassesViewModel _classesViewModel;
-        private readonly IClassDataService _classDataService;
+        private readonly IDataService<Class> _classDataService;
 
-        public DeleteClassCommand(ClassesViewModel classesViewModel, IClassDataService classDataService)
+        public DeleteClassCommand(ClassesViewModel classesViewModel, IDataService<Class> classDataService)
         {
             _classesViewModel = classesViewModel;
             _classDataService = classDataService;

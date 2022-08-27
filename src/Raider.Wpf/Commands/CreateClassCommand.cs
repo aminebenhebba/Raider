@@ -8,10 +8,10 @@ namespace Raider.Wpf.Commands
     public class CreateClassCommand : CommandBase
     {
         private readonly AddClassViewModel _addClassViewModel;
-        private readonly IClassDataService _classDataService;
+        private readonly IDataService<Class> _classDataService;
         private readonly NavigationService<ClassesViewModel> _navigationService;
 
-        public CreateClassCommand(NavigationService<ClassesViewModel> navigationService, AddClassViewModel addClassViewModel, IClassDataService classDataService)
+        public CreateClassCommand(NavigationService<ClassesViewModel> navigationService, AddClassViewModel addClassViewModel, IDataService<Class> classDataService)
         {
             _navigationService = navigationService;
             _addClassViewModel = addClassViewModel;

@@ -10,14 +10,14 @@ namespace Raider.Wpf.ViewModels
     public class ClassesViewModel : ViewModelBase
     {
         private readonly INavigator _navigator;
-        private readonly IClassDataService _classDataService;
+        private readonly IDataService<Class> _classDataService;
         public ICommand AddClassCommand { get; }
         public ICommand DeleteClassCommand { get; }
         public Class SelectedItem { get; set; }
 
         public ObservableCollection<Class>? Classes { get; set; }
 
-        public ClassesViewModel(INavigator navigator, IClassDataService classDataService)
+        public ClassesViewModel(INavigator navigator, IDataService<Class> classDataService)
         {
             _navigator = navigator;
             _classDataService = classDataService;
