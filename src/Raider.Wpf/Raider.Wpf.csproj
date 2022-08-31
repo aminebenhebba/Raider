@@ -5,10 +5,12 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Raider.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Data\Raider.db" />
+    <None Remove="Raider.ico" />
     <None Remove="Resources\Classes\Death Knight.png" />
     <None Remove="Resources\Classes\Druid.png" />
     <None Remove="Resources\Classes\Hunter.png" />
@@ -58,6 +60,9 @@
 
   <ItemGroup>
     <Content Include="Data\Raider.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Raider.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Classes\Death Knight.png">
