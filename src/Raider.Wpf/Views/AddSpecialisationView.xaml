@@ -36,7 +36,7 @@
                 <TextBox x:Name="txtSpecialisation" Style="{StaticResource textboxForm}" Text="{Binding SpecialisationName, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
 
-            <ComboBox Grid.Column="1" Width="60" Height="30" Margin="10 0" ItemsSource="{Binding IconList}" SelectedValue="{Binding SpecialisationIcon}">
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" Grid.Column="1" Width="60" Height="30" Margin="10 0" ItemsSource="{Binding IconList}" SelectedValue="{Binding SpecialisationIcon}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Image Width="25" Height="25" HorizontalAlignment="Center"
@@ -45,9 +45,9 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             
-            <ComboBox Grid.Column="3" Width="100" Height="30" Margin="10 0" ItemsSource="{Binding ClassList}" SelectedValue="{Binding Class}"/>
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" VerticalContentAlignment="Center" Grid.Column="3" Width="100" Height="30" Margin="10 0" ItemsSource="{Binding ClassList}" SelectedValue="{Binding Class}"/>
 
-            <ComboBox Grid.Column="4" Width="100" Height="30" Margin="10 0" ItemsSource="{Binding RoleList}" SelectedValue="{Binding Role}"/>
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" VerticalContentAlignment="Center" Grid.Column="4" Width="100" Height="30" Margin="10 0" ItemsSource="{Binding RoleList}" SelectedValue="{Binding Role}"/>
 
             <Button Grid.Column="5" Style="{StaticResource addButton}" Content="Add" Margin="10 0" Width="70" Height="30"
                     Command="{Binding CreateSpecialisationCommand}"/>

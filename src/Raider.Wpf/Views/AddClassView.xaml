@@ -34,7 +34,7 @@
                 <TextBox x:Name="txtName" Style="{StaticResource textboxForm}" Text="{Binding ClassName, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
 
-            <ComboBox Grid.Column="1" Width="55" Height="30" Margin="10 0" ItemsSource="{Binding IconList}" SelectedValue="{Binding ClassIcon}">
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" Grid.Column="1" Width="55" Height="30" Margin="10 0" ItemsSource="{Binding IconList}" SelectedValue="{Binding ClassIcon}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Image Width="25" Height="25" HorizontalAlignment="Center"
