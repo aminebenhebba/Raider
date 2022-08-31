@@ -44,6 +44,9 @@
         <DataTemplate DataType="{x:Type ViewModels:AddRoleViewModel}">
             <Views:AddRoleView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:AddSpecialisationViewModel}">
+            <Views:AddSpecialisationView/>
+        </DataTemplate>
 
     </Window.Resources>
 
