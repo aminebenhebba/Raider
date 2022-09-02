@@ -205,6 +205,8 @@
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="Models\" />
+    <Folder Include="Resources\Raids\" />
+    <Folder Include="Resources\Cards\" />
   </ItemGroup>
 
   <ItemGroup>
