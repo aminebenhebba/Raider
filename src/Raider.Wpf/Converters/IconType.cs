@@ -4,6 +4,7 @@
     {
         Class = 0,
         Specialisation = 1,
-        Role = 2
+        Role = 2,
+        Raid = 3
     }
 }

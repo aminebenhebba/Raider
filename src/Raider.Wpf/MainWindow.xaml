@@ -47,6 +47,9 @@
         <DataTemplate DataType="{x:Type ViewModels:AddSpecialisationViewModel}">
             <Views:AddSpecialisationView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:AddRaidViewModel}">
+            <Views:AddRaidView/>
+        </DataTemplate>
 
     </Window.Resources>
 

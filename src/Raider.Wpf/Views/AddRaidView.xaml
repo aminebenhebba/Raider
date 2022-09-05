@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Raider.Wpf.Views.AddRaidView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:converters="clr-namespace:Raider.Wpf.Converters"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Raider.Wpf.Views"
+             mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/Shared.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Background="#EFF2F7" BorderBrush="#E0E6ED" BorderThickness="1" CornerRadius="10">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" MinWidth="140" Margin="10"
+                      ItemsSource="{Binding LogoList}" SelectedValue="{Binding RaidLogo}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image HorizontalAlignment="Center"
+                               Source="{Binding Converter={StaticResource FileToPathConverter}, ConverterParameter={x:Static converters:IconType.Raid}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            
+            <Grid Grid.Row="0" Grid.Column="1" MinWidth="200" Margin="10 0">
+                <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                                    Panel.ZIndex="1" Text="Raid"
+                                    Visibility="{Binding ElementName=txtRaidName, Path=Text.IsEmpty, Converter={StaticResource BoolToVisibility}}"/>
+                <TextBox x:Name="txtRaidName" Style="{StaticResource textboxForm}" Text="{Binding RaidName, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1" Width="120" Margin="10 0" HorizontalAlignment="Left">
+                <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                                    Panel.ZIndex="1" Text="Players" Visibility="{Binding ElementName=txtRaidPlayers, Path=Text.IsEmpty, Converter={StaticResource BoolToVisibility}}"/>
+                <TextBox x:Name="txtRaidPlayers" Style="{StaticResource textboxForm}" Text="{Binding RaidPlayers, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10">
+
+                <Button Grid.Column="3" Style="{StaticResource addButton}" Content="Add" Margin="10 0" Width="70" Height="30"
+                        Command="{Binding CreateRaidCommand}"/>
+
+                <Button Grid.Column="4" Style="{StaticResource addButton}" Content="Cancel" Margin="10 0" Width="70" Height="30"
+                        Command="{Binding CancelCreateCommand}"/>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</UserControl>

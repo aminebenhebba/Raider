@@ -31,6 +31,9 @@ namespace Raider.Wpf.Converters
                 case IconType.Role:
                     path = $"/Resources/Roles/{fileName}";
                     break;
+                case IconType.Raid:
+                    path = $"/Resources/Raids/{fileName}";
+                    break;
             }
 
             return path;

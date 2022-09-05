@@ -22,6 +22,8 @@
     <None Remove="Resources\Classes\Warlock.png" />
     <None Remove="Resources\Classes\Warrior.png" />
     <None Remove="Resources\Logo.png" />
+    <None Remove="Resources\Raids\ICC25.png" />
+    <None Remove="Resources\Raids\RS25.png" />
     <None Remove="Resources\Roles\Caster.png" />
     <None Remove="Resources\Roles\Healer.png" />
     <None Remove="Resources\Roles\Mele.png" />
@@ -96,6 +98,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Raids\ICC25.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Raids\RS25.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Roles\Caster.png">
@@ -205,7 +213,6 @@
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="Models\" />
-    <Folder Include="Resources\Raids\" />
     <Folder Include="Resources\Cards\" />
   </ItemGroup>
 
