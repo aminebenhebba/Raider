@@ -32,11 +32,6 @@ namespace Raider.Wpf.Persistence.Migrations
                         .HasColumnType("INTEGER")
                         .HasDefaultValue(false);
 
-                    b.Property<bool>("IsSaved")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasDefaultValue(false);
-
                     b.Property<Guid?>("MainId")
                         .HasColumnType("TEXT");
 
@@ -65,6 +60,9 @@ namespace Raider.Wpf.Persistence.Migrations
                     b.Property<float?>("GearScore")
                         .HasColumnType("REAL");
 
+                    b.Property<bool>("IsBis")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("CharacterId", "SpecialisationId");
 
                     b.HasIndex("SpecialisationId");
@@ -92,9 +90,9 @@ namespace Raider.Wpf.Persistence.Migrations
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("Raider.Domain.Entities.Encounter", b =>
+            modelBuilder.Entity("Raider.Domain.Entities.Event", b =>
                 {
-                    b.Property<Guid>("RaidId")
+                    b.Property<string>("RaidId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CharacterId")
@@ -106,31 +104,32 @@ namespace Raider.Wpf.Persistence.Migrations
                     b.Property<int>("Day")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("EventId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("RaidId", "CharacterId", "RaidSetupId");
 
                     b.HasIndex("CharacterId");
 
                     b.HasIndex("RaidSetupId");
 
-                    b.ToTable("Encounters");
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("Raider.Domain.Entities.Raid", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Logo")
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Players")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlayersPerGroup")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -149,11 +148,8 @@ namespace Raider.Wpf.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("RaidId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Template")
-                        .HasMaxLength(100)
+                    b.Property<string>("RaidId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -168,16 +164,17 @@ namespace Raider.Wpf.Persistence.Migrations
                     b.Property<Guid>("RaidSetupId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SpecialisationId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Group")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Index")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("RaidSetupId", "SpecialisationId", "Group", "Index");
+                    b.Property<string>("SpecialisationId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RaidSetupId", "Group", "Index");
 
                     b.HasIndex("SpecialisationId");
 
@@ -262,7 +259,7 @@ namespace Raider.Wpf.Persistence.Migrations
                     b.Navigation("Specialisation");
                 });
 
-            modelBuilder.Entity("Raider.Domain.Entities.Encounter", b =>
+            modelBuilder.Entity("Raider.Domain.Entities.Event", b =>
                 {
                     b.HasOne("Raider.Domain.Entities.Character", "Character")
                         .WithMany()

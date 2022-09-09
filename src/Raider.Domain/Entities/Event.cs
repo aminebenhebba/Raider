@@ -3,10 +3,11 @@ using System;
 
 namespace Raider.Domain.Entities
 {
-    public class Encounter
+    public class Event
     {
         public Day Day { get; set; }
-        public Guid RaidId { get; set; }
+        public int EventId { get; set; }
+        public string RaidId { get; set; }
         public Guid CharacterId { get; set; }
         public Guid RaidSetupId { get; set; }
 

@@ -8,7 +8,7 @@ namespace Raider.Wpf.Persistence
         public DbSet<Character> Characters { get; set; }
         public DbSet<CharacterSpecialisation> CharacterSpecialisations { get; set; }
         public DbSet<Class> Classes { get; set; }
-        public DbSet<Encounter> Encounters { get; set; }
+        public DbSet<Event> Events { get; set; }
         public DbSet<Raid> Raids { get; set; }
         public DbSet<RaidSetup> RaidSetups { get; set; }
         public DbSet<RaidSetupMap> RaidSetupMaps { get; set; }
@@ -33,10 +33,6 @@ namespace Raider.Wpf.Persistence
                     .IsRequired()
                     .HasDefaultValue(false);
 
-                entity.Property(e => e.IsSaved)
-                    .IsRequired()
-                    .HasDefaultValue(false);
-
                 entity.HasOne(nav => nav.Main)
                     .WithMany()
                     .HasForeignKey(e => e.MainId);
@@ -52,6 +48,8 @@ namespace Raider.Wpf.Persistence
                 entity.HasKey(e => new { e.CharacterId, e.SpecialisationId });
 
                 entity.Property(e => e.GearScore);
+
+                entity.Property(e => e.IsBis);
 
                 entity.HasOne(nav => nav.Character)
                     .WithMany()
@@ -83,11 +81,14 @@ namespace Raider.Wpf.Persistence
                     .IsRequired();
             });
 
-            modelBuilder.Entity<Encounter>(entity =>
+            modelBuilder.Entity<Event>(entity =>
             {
                 entity.HasKey(e => new { e.RaidId, e.CharacterId, e.RaidSetupId });
 
                 entity.Property(e => e.Day)
+                    .IsRequired();
+
+                entity.Property(e => e.EventId)
                     .IsRequired();
 
                 entity.HasOne(nav => nav.Character)
@@ -110,11 +111,14 @@ namespace Raider.Wpf.Persistence
             {
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
                     .IsRequired();
 
                 entity.Property(e => e.Players)
+                    .IsRequired();
+
+                entity.Property(e => e.PlayersPerGroup)
                     .IsRequired();
 
                 entity.Property(e => e.Logo)
@@ -133,14 +137,11 @@ namespace Raider.Wpf.Persistence
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
                     .IsRequired();
-
-                entity.Property(e => e.Template)
-                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<RaidSetupMap>(entity =>
             {
-                entity.HasKey(e => new { e.RaidSetupId, e.SpecialisationId, e.Group, e.Index });
+                entity.HasKey(e => new { e.RaidSetupId, e.Group, e.Index });
 
                 entity.HasOne(nav => nav.RaidSetup)
                     .WithMany()

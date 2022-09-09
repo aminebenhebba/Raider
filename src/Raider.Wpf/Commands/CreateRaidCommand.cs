@@ -24,8 +24,9 @@ namespace Raider.Wpf.Commands
         public override bool CanExecute(object? parameter)
         {
             if (string.IsNullOrWhiteSpace(_addRaidViewModel.RaidName) ||
-                // TODO: assuming that the number of players of a giving MMO dont goes under 5, you sould probably push this to a settings !!!
-                _addRaidViewModel.RaidPlayers < 5)
+                // TODO: assuming that the number of players of a giving MMO dont goes under 5, and there is more then 1 player per group
+                // ==> you sould probably push this to a settings !!!
+                _addRaidViewModel.RaidPlayers < 5 || _addRaidViewModel.RaidPlayersPerGroup <= 1 )
             {
                 return false;
             }
@@ -36,9 +37,9 @@ namespace Raider.Wpf.Commands
         {
             var newRaid = new Raid
             {
-                Id = Guid.NewGuid(),
-                Name = _addRaidViewModel.RaidName,
+                Id = _addRaidViewModel.RaidName,
                 Players = _addRaidViewModel.RaidPlayers,
+                PlayersPerGroup = _addRaidViewModel.RaidPlayersPerGroup,
                 Logo = _addRaidViewModel.RaidLogo
             };
             _raidDataService.Add(newRaid);
@@ -50,7 +51,8 @@ namespace Raider.Wpf.Commands
         private void OnViewModelPropertyChange(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(_addRaidViewModel.RaidName) ||
-                e.PropertyName == nameof(_addRaidViewModel.RaidPlayers))
+                e.PropertyName == nameof(_addRaidViewModel.RaidPlayers) ||
+                e.PropertyName == nameof(_addRaidViewModel.RaidPlayersPerGroup))
             {
                 OnCanExecuteChanged();
             }

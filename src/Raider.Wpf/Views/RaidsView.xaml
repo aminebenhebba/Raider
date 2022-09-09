@@ -54,9 +54,11 @@
                     </DataGridCheckBoxColumn.HeaderTemplate>
                 </DataGridCheckBoxColumn>
 
-                <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Id}"/>
 
                 <DataGridTextColumn Header="Players" IsReadOnly="True" Width="*" Binding="{Binding Players}"/>
+
+                <DataGridTextColumn Header="Players / Group" IsReadOnly="True" Width="*" Binding="{Binding PlayersPerGroup}"/>
 
                 <DataGridTemplateColumn Header="Logo" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>

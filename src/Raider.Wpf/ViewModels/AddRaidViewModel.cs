@@ -36,6 +36,17 @@ namespace Raider.Wpf.ViewModels
             }
         }
 
+        private int _raidPLayersPerGroup;
+        public int RaidPlayersPerGroup
+        {
+            get { return _raidPLayersPerGroup; }
+            set
+            {
+                _raidPLayersPerGroup = value;
+                OnPropertyChange(nameof(RaidPlayersPerGroup));
+            }
+        }
+
         private string? _raidLogo;
         public string? RaidLogo
         {
