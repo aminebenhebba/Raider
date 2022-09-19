@@ -26,6 +26,8 @@ namespace Raider.Wpf
                     services.AddSingleton<MainViewModel>();
 
                     services.AddTransient(typeof(IDataService<>), typeof(DataService<>));
+                    services.AddTransient<IRaidDataService, RaidDataService>();
+                    services.AddTransient<IRaidSetupMapDataService, RaidSetupMapDataService>();
                 })
                 .Build();
         }
