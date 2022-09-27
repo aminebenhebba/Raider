@@ -9,22 +9,17 @@ namespace Raider.Wpf.ViewModels
 {
     public class ClassesViewModel : ViewModelBase
     {
-        private readonly INavigator _navigator;
-        private readonly IDataService<Class> _classDataService;
         public ICommand AddClassCommand { get; }
         public ICommand DeleteClassCommand { get; }
         public Class SelectedItem { get; set; }
 
         public ObservableCollection<Class>? Classes { get; set; }
 
-        public ClassesViewModel(INavigator navigator, IDataService<Class> classDataService)
+        public ClassesViewModel(NavigationStore navigationStore, IDataService<Class> classDataService)
         {
-            _navigator = navigator;
-            _classDataService = classDataService;
+            Classes = new ObservableCollection<Class>(classDataService.GetAll());
 
-            Classes = new ObservableCollection<Class>(_classDataService.GetAll());
-
-            AddClassCommand = new NavigateCommand<AddClassViewModel>(new NavigationService<AddClassViewModel>(_navigator, () => new AddClassViewModel(_navigator, classDataService)));
+            AddClassCommand = new NavigateCommand<AddClassViewModel>(new NavigationService<AddClassViewModel>(navigationStore, () => new AddClassViewModel(navigationStore, classDataService)));
             DeleteClassCommand = new DeleteClassCommand(this, classDataService);
         }
     }

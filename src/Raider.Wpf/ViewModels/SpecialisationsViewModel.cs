@@ -9,25 +9,20 @@ namespace Raider.Wpf.ViewModels
 {
     public class SpecialisationsViewModel : ViewModelBase
     {
-        private readonly INavigator _navigator;
-        private readonly IDataService<Specialisation> _specialisationDataService;
         public ICommand AddSpecialisationCommand { get; }
         public ICommand DeleteSpecialisationCommand { get; }
 
         public Specialisation SelectedItem { get; set; }
         public ObservableCollection<Specialisation>? Specialisations { get; set; }
 
-        public SpecialisationsViewModel(INavigator navigator,
+        public SpecialisationsViewModel(NavigationStore navigationStore,
                                         IDataService<Specialisation> specialisationDataService,
                                         IDataService<Class> classDataService,
                                         IDataService<Role> roleDataService)
         {
-            _navigator = navigator;
-            _specialisationDataService = specialisationDataService;
+            Specialisations = new ObservableCollection<Specialisation>(specialisationDataService.GetAll());
 
-            Specialisations = new ObservableCollection<Specialisation>(_specialisationDataService.GetAll());
-
-            AddSpecialisationCommand = new NavigateCommand<AddSpecialisationViewModel>(new NavigationService<AddSpecialisationViewModel>(_navigator, () => new AddSpecialisationViewModel(_navigator, specialisationDataService,classDataService,roleDataService)));
+            AddSpecialisationCommand = new NavigateCommand<AddSpecialisationViewModel>(new NavigationService<AddSpecialisationViewModel>(navigationStore, () => new AddSpecialisationViewModel(navigationStore, specialisationDataService,classDataService,roleDataService)));
             DeleteSpecialisationCommand = new DeleteSpecialisationCommand(this, specialisationDataService);
         }
     }

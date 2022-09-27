@@ -3,7 +3,7 @@ using System;
 
 namespace Raider.Wpf.Store
 {
-    public class Navigator : INavigator
+    public class NavigationStore
     {
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel

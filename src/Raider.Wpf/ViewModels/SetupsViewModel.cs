@@ -12,7 +12,6 @@ namespace Raider.Wpf.ViewModels
 {
     public class SetupsViewModel : ViewModelBase
     {
-        private readonly INavigator _navigator;
         private readonly IDataService<RaidSetup> _raidSetupDataService;
         private readonly IRaidSetupMapDataService _raidSetupMapDataService;
         private readonly IRaidDataService _raidDataService;
@@ -97,17 +96,16 @@ namespace Raider.Wpf.ViewModels
             return raidGroups;
         }
 
-        public SetupsViewModel(INavigator navigator,
+        public SetupsViewModel(NavigationStore navigationStore,
                                IDataService<RaidSetup> raidSetupDataService,
                                IRaidSetupMapDataService raidSetupMapDataService,
                                IRaidDataService raidDataService)
         {
-            _navigator = navigator;
             _raidSetupDataService = raidSetupDataService;
             _raidSetupMapDataService = raidSetupMapDataService;
             _raidDataService = raidDataService;
 
-            RaidSetups = new ObservableCollection<RaidSetup>(_raidSetupDataService.GetAll());
+            RaidSetups = new ObservableCollection<RaidSetup>(raidSetupDataService.GetAll());
             if (RaidSetups.Any())
             {
                 SelectedItem = RaidSetups[0];

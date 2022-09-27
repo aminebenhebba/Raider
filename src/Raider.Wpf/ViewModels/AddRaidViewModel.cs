@@ -12,8 +12,6 @@ namespace Raider.Wpf.ViewModels
 {
     public class AddRaidViewModel : ViewModelBase
     {
-        private readonly INavigator _navigator;
-
         private string? _raidName;
         public string? RaidName
         {
@@ -72,10 +70,8 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateRaidCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddRaidViewModel(INavigator navigator, IDataService<Raid> raidDataService)
+        public AddRaidViewModel(NavigationStore navigationStore, IDataService<Raid> raidDataService)
         {
-            _navigator = navigator;
-
             var lisOfLogo = LoadRaidLogoList();
 
             if (lisOfLogo.Any())
@@ -84,9 +80,9 @@ namespace Raider.Wpf.ViewModels
                 RaidLogo = LogoList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(_navigator, () => new RaidsViewModel(_navigator, raidDataService)));
+            CancelCreateCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(navigationStore, () => new RaidsViewModel(navigationStore, raidDataService)));
 
-            CreateRaidCommand = new CreateRaidCommand(new NavigationService<RaidsViewModel>(navigator, () => new RaidsViewModel(_navigator, raidDataService)), this, raidDataService);
+            CreateRaidCommand = new CreateRaidCommand(new NavigationService<RaidsViewModel>(navigationStore, () => new RaidsViewModel(navigationStore, raidDataService)), this, raidDataService);
         }
 
         private List<string>? LoadRaidLogoList()

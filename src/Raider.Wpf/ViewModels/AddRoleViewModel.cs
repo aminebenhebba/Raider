@@ -12,8 +12,6 @@ namespace Raider.Wpf.ViewModels
 {
     public class AddRoleViewModel: ViewModelBase
     {
-        private readonly INavigator _navigator;
-
         private string? _roleName;
         public string? RoleName
         {
@@ -50,10 +48,8 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateRoleCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddRoleViewModel(INavigator navigator, IDataService<Role> roleDataService)
+        public AddRoleViewModel(NavigationStore navigationStore, IDataService<Role> roleDataService)
         {
-            _navigator = navigator;
-
             var lisOfIcon = LoadRoleIconList();
 
             if (lisOfIcon.Any())
@@ -62,9 +58,9 @@ namespace Raider.Wpf.ViewModels
                 RoleIcon = IconList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<RolesViewModel>(new NavigationService<RolesViewModel>(_navigator, () => new RolesViewModel(_navigator, roleDataService)));
+            CancelCreateCommand = new NavigateCommand<RolesViewModel>(new NavigationService<RolesViewModel>(navigationStore, () => new RolesViewModel(navigationStore, roleDataService)));
 
-            CreateRoleCommand = new CreateRoleCommand(new NavigationService<RolesViewModel>(navigator, () => new RolesViewModel(_navigator, roleDataService)), this, roleDataService);
+            CreateRoleCommand = new CreateRoleCommand(new NavigationService<RolesViewModel>(navigationStore, () => new RolesViewModel(navigationStore, roleDataService)), this, roleDataService);
         }
 
 

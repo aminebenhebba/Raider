@@ -6,18 +6,18 @@ namespace Raider.Wpf.Services
 {
     public class NavigationService<TViewModel> where TViewModel : ViewModelBase
     {
-        private readonly INavigator _navigator;
+        private readonly NavigationStore _navigationStore;
         private readonly Func<TViewModel> _createViewModel;
 
-        public NavigationService(INavigator navigator, Func<TViewModel> createViewModel)
+        public NavigationService(NavigationStore navigatorStore, Func<TViewModel> createViewModel)
         {
-            _navigator = navigator;
+            _navigationStore = navigatorStore;
             _createViewModel = createViewModel;
         }
 
         public void Navigate()
         {
-            _navigator.CurrentViewModel = _createViewModel();
+            _navigationStore.CurrentViewModel = _createViewModel();
         }
     }
 }

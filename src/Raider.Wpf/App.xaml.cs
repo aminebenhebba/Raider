@@ -21,9 +21,9 @@ namespace Raider.Wpf
                 {
                     services.AddDbContext<RaiderDbContext>(options => options.UseSqlite("DataSource=Data\\Raider.db"));
 
-                    services.AddSingleton<INavigator, Navigator>();
-                    services.AddSingleton<MainWindow>();
-                    services.AddSingleton<MainViewModel>();
+                    services.AddScoped<NavigationStore>();
+                    services.AddScoped<MainWindow>();
+                    services.AddScoped<MainViewModel>();
 
                     services.AddTransient(typeof(IDataService<>), typeof(DataService<>));
                     services.AddTransient<IRaidDataService, RaidDataService>();

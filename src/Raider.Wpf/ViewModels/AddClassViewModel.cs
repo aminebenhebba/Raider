@@ -12,8 +12,6 @@ namespace Raider.Wpf.ViewModels
 {
     public class AddClassViewModel : ViewModelBase
     {
-        private readonly INavigator _navigator;
-
         private string? _className;
         public string? ClassName
         {
@@ -61,10 +59,8 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateClassCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddClassViewModel(INavigator navigator, IDataService<Class> classDataService)
+        public AddClassViewModel(NavigationStore navigationStore, IDataService<Class> classDataService)
         {
-            _navigator = navigator;
-
             var lisOfIcon = LoadClassIconList();
 
             if (lisOfIcon.Any())
@@ -73,9 +69,9 @@ namespace Raider.Wpf.ViewModels
                 ClassIcon = IconList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(_navigator, () => new ClassesViewModel(_navigator, classDataService)));
+            CancelCreateCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(navigationStore, () => new ClassesViewModel(navigationStore, classDataService)));
 
-            CreateClassCommand = new CreateClassCommand(new NavigationService<ClassesViewModel>(navigator, () => new ClassesViewModel(_navigator, classDataService)), this, classDataService);
+            CreateClassCommand = new CreateClassCommand(new NavigationService<ClassesViewModel>(navigationStore, () => new ClassesViewModel(navigationStore, classDataService)), this, classDataService);
         }
 
         private List<string>? LoadClassIconList()

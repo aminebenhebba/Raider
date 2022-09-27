@@ -12,10 +12,6 @@ namespace Raider.Wpf.ViewModels
 {
     public class AddSpecialisationViewModel: ViewModelBase
     {
-        private readonly INavigator _navigator;
-        private readonly IDataService<Class> _classDataService;
-        private readonly IDataService<Role> _roleDataService;
-
         private string? _specialisationName;
         public string? SpecialisationName
         {
@@ -96,15 +92,11 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateSpecialisationCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddSpecialisationViewModel(INavigator navigator,
+        public AddSpecialisationViewModel(NavigationStore navigationStore,
                                           IDataService<Specialisation> specialisationDataService,
                                           IDataService<Class> classDataService,
                                           IDataService<Role> roleDataService)
         {
-            _navigator = navigator;
-            _classDataService = classDataService;
-            _roleDataService = roleDataService;
-
             var lisOfIcon = LoadSpecialisationIconList();
             if (lisOfIcon.Any())
             {
@@ -112,22 +104,22 @@ namespace Raider.Wpf.ViewModels
                 SpecialisationIcon = IconList[0];
             }
 
-            var listOfClasses = LoadClassesList();
+            var listOfClasses = classDataService.GetAll().Select(c => c.Id).ToList();
             if (listOfClasses.Any())
             {
                 ClassList = new ObservableCollection<string>(listOfClasses);
                 Class = ClassList[0];
             }
 
-            var listOfRoles = LoadRolesList();
+            var listOfRoles = roleDataService.GetAll().Select(r => r.Id).ToList();
             if (listOfRoles.Any())
             {
                 RoleList = new ObservableCollection<string>(listOfRoles);
                 Role = RoleList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(_navigator, () => new SpecialisationsViewModel(_navigator, specialisationDataService, classDataService, roleDataService)));
-            CreateSpecialisationCommand = new CreateSpecialisationCommand(new NavigationService<SpecialisationsViewModel>(navigator, () => new SpecialisationsViewModel(_navigator, specialisationDataService, classDataService, roleDataService)), this, specialisationDataService);
+            CancelCreateCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(navigationStore, () => new SpecialisationsViewModel(navigationStore, specialisationDataService, classDataService, roleDataService)));
+            CreateSpecialisationCommand = new CreateSpecialisationCommand(new NavigationService<SpecialisationsViewModel>(navigationStore, () => new SpecialisationsViewModel(navigationStore, specialisationDataService, classDataService, roleDataService)), this, specialisationDataService);
         }
 
         private List<string>? LoadSpecialisationIconList()
@@ -135,16 +127,6 @@ namespace Raider.Wpf.ViewModels
             var result = new List<string>(Directory.EnumerateFiles("./Resources/Specialisations").Select(file => Path.GetFileName(file)));
 
             return result;
-        }
-
-        private List<string>? LoadClassesList()
-        {
-            return _classDataService.GetAll().Select(c=>c.Id).ToList();
-        }
-
-        private List<string>? LoadRolesList()
-        {
-            return _roleDataService.GetAll().Select(r => r.Id).ToList();
         }
     }
 }

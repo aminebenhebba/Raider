@@ -9,11 +9,11 @@ namespace Raider.Wpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly INavigator _navigator;
+        private readonly NavigationStore _navigationStore;
 
         public event Action? RequestClose;
 
-        public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
+        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
         
         private string? _searchedMember;
         public string? SearchedMember
@@ -41,26 +41,26 @@ namespace Raider.Wpf.ViewModels
 
         public ICommand ExitCommand { get; }
 
-        public MainViewModel(INavigator navigator,
-            IDataService<Class> classDataService,
-            IDataService<Specialisation> specialisationDataService,
-            IDataService<Role> roleDataService,
-            IRaidDataService raidDataService,
-            IDataService<RaidSetup> raidSetupDataService,
-            IRaidSetupMapDataService raidSetupMapDataService)
+        public MainViewModel(NavigationStore navigationStore,
+                             IDataService<Class> classDataService,
+                             IDataService<Specialisation> specialisationDataService,
+                             IDataService<Role> roleDataService,
+                             IRaidDataService raidDataService,
+                             IDataService<RaidSetup> raidSetupDataService,
+                             IRaidSetupMapDataService raidSetupMapDataService)
         {
-            _navigator = navigator;
+            _navigationStore = navigationStore;
 
-            _navigator.CurrentViewModelChanged += OnCurrentModelViewChanged;
+            _navigationStore.CurrentViewModelChanged += OnCurrentModelViewChanged;
 
-            DashboardCommand = new NavigateCommand<DashboardViewModel>(new NavigationService<DashboardViewModel>(_navigator, () => new DashboardViewModel()));
-            EventsCommand = new NavigateCommand<EventsViewModel>(new NavigationService<EventsViewModel>(_navigator, () => new EventsViewModel()));
-            MembersCommand = new NavigateCommand<MembersViewModel>(new NavigationService<MembersViewModel>(_navigator, () => new MembersViewModel()));
-            ClassesCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(_navigator, () => new ClassesViewModel(_navigator, classDataService)));
-            SpecialisationsCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(_navigator, () => new SpecialisationsViewModel(_navigator, specialisationDataService,classDataService,roleDataService)));
-            RolesCommand = new NavigateCommand<RolesViewModel>(new NavigationService<RolesViewModel>(_navigator, () => new RolesViewModel(_navigator, roleDataService)));
-            RaidsCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(_navigator, () => new RaidsViewModel(_navigator, raidDataService)));
-            SetupsCommand = new NavigateCommand<SetupsViewModel>(new NavigationService<SetupsViewModel>(_navigator, () => new SetupsViewModel(_navigator, raidSetupDataService, raidSetupMapDataService, raidDataService)));
+            DashboardCommand = new NavigateCommand<DashboardViewModel>(new NavigationService<DashboardViewModel>(_navigationStore, () => new DashboardViewModel()));
+            EventsCommand = new NavigateCommand<EventsViewModel>(new NavigationService<EventsViewModel>(_navigationStore, () => new EventsViewModel()));
+            MembersCommand = new NavigateCommand<MembersViewModel>(new NavigationService<MembersViewModel>(_navigationStore, () => new MembersViewModel()));
+            ClassesCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(_navigationStore, () => new ClassesViewModel(_navigationStore, classDataService)));
+            SpecialisationsCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(_navigationStore, () => new SpecialisationsViewModel(_navigationStore, specialisationDataService,classDataService,roleDataService)));
+            RolesCommand = new NavigateCommand<RolesViewModel>(new NavigationService<RolesViewModel>(_navigationStore, () => new RolesViewModel(_navigationStore, roleDataService)));
+            RaidsCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(_navigationStore, () => new RaidsViewModel(_navigationStore, raidDataService)));
+            SetupsCommand = new NavigateCommand<SetupsViewModel>(new NavigationService<SetupsViewModel>(_navigationStore, () => new SetupsViewModel(_navigationStore, raidSetupDataService, raidSetupMapDataService, raidDataService)));
 
             ExitCommand = new ExitCommand(this);
         }
