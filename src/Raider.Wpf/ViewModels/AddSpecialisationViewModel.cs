@@ -1,7 +1,6 @@
 ﻿using Raider.Domain.Entities;
 using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
-using Raider.Wpf.Store;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -92,7 +91,7 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateSpecialisationCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddSpecialisationViewModel(NavigationStore navigationStore,
+        public AddSpecialisationViewModel(NavigationService<SpecialisationsViewModel> navigationService,
                                           IDataService<Specialisation> specialisationDataService,
                                           IDataService<Class> classDataService,
                                           IDataService<Role> roleDataService)
@@ -118,8 +117,8 @@ namespace Raider.Wpf.ViewModels
                 Role = RoleList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<SpecialisationsViewModel>(new NavigationService<SpecialisationsViewModel>(navigationStore, () => new SpecialisationsViewModel(navigationStore, specialisationDataService, classDataService, roleDataService)));
-            CreateSpecialisationCommand = new CreateSpecialisationCommand(new NavigationService<SpecialisationsViewModel>(navigationStore, () => new SpecialisationsViewModel(navigationStore, specialisationDataService, classDataService, roleDataService)), this, specialisationDataService);
+            CancelCreateCommand = new NavigateCommand<SpecialisationsViewModel>(navigationService);
+            CreateSpecialisationCommand = new CreateSpecialisationCommand(navigationService, this, specialisationDataService);
         }
 
         private List<string>? LoadSpecialisationIconList()

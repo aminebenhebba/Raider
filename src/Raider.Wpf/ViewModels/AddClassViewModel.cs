@@ -1,7 +1,6 @@
 ﻿using Raider.Domain.Entities;
 using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
-using Raider.Wpf.Store;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -59,7 +58,7 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateClassCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddClassViewModel(NavigationStore navigationStore, IDataService<Class> classDataService)
+        public AddClassViewModel(NavigationService<ClassesViewModel> navigationService, IDataService<Class> classDataService)
         {
             var lisOfIcon = LoadClassIconList();
 
@@ -69,9 +68,9 @@ namespace Raider.Wpf.ViewModels
                 ClassIcon = IconList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<ClassesViewModel>(new NavigationService<ClassesViewModel>(navigationStore, () => new ClassesViewModel(navigationStore, classDataService)));
+            CancelCreateCommand = new NavigateCommand<ClassesViewModel>(navigationService);
 
-            CreateClassCommand = new CreateClassCommand(new NavigationService<ClassesViewModel>(navigationStore, () => new ClassesViewModel(navigationStore, classDataService)), this, classDataService);
+            CreateClassCommand = new CreateClassCommand(navigationService, this, classDataService);
         }
 
         private List<string>? LoadClassIconList()

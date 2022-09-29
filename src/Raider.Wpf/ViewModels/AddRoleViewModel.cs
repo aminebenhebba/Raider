@@ -1,7 +1,6 @@
 ﻿using Raider.Domain.Entities;
 using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
-using Raider.Wpf.Store;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -48,7 +47,7 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateRoleCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddRoleViewModel(NavigationStore navigationStore, IDataService<Role> roleDataService)
+        public AddRoleViewModel(NavigationService<RolesViewModel> navigationService, IDataService<Role> roleDataService)
         {
             var lisOfIcon = LoadRoleIconList();
 
@@ -58,11 +57,10 @@ namespace Raider.Wpf.ViewModels
                 RoleIcon = IconList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<RolesViewModel>(new NavigationService<RolesViewModel>(navigationStore, () => new RolesViewModel(navigationStore, roleDataService)));
+            CancelCreateCommand = new NavigateCommand<RolesViewModel>(navigationService);
 
-            CreateRoleCommand = new CreateRoleCommand(new NavigationService<RolesViewModel>(navigationStore, () => new RolesViewModel(navigationStore, roleDataService)), this, roleDataService);
+            CreateRoleCommand = new CreateRoleCommand(navigationService, this, roleDataService);
         }
-
 
         private List<string>? LoadRoleIconList()
         {

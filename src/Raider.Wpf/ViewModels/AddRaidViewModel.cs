@@ -1,7 +1,6 @@
 ﻿using Raider.Domain.Entities;
 using Raider.Wpf.Commands;
 using Raider.Wpf.Services;
-using Raider.Wpf.Store;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -70,7 +69,7 @@ namespace Raider.Wpf.ViewModels
         public ICommand CreateRaidCommand { get; }
         public ICommand CancelCreateCommand { get; }
 
-        public AddRaidViewModel(NavigationStore navigationStore, IDataService<Raid> raidDataService)
+        public AddRaidViewModel(NavigationService<RaidsViewModel> navigationService, IDataService<Raid> raidDataService)
         {
             var lisOfLogo = LoadRaidLogoList();
 
@@ -80,9 +79,9 @@ namespace Raider.Wpf.ViewModels
                 RaidLogo = LogoList[0];
             }
 
-            CancelCreateCommand = new NavigateCommand<RaidsViewModel>(new NavigationService<RaidsViewModel>(navigationStore, () => new RaidsViewModel(navigationStore, raidDataService)));
+            CancelCreateCommand = new NavigateCommand<RaidsViewModel>(navigationService);
 
-            CreateRaidCommand = new CreateRaidCommand(new NavigationService<RaidsViewModel>(navigationStore, () => new RaidsViewModel(navigationStore, raidDataService)), this, raidDataService);
+            CreateRaidCommand = new CreateRaidCommand(navigationService, this, raidDataService);
         }
 
         private List<string>? LoadRaidLogoList()
