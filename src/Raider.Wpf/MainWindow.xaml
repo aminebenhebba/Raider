@@ -50,6 +50,9 @@
         <DataTemplate DataType="{x:Type ViewModels:AddRaidViewModel}">
             <Views:AddRaidView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:AddSetupViewModel}">
+            <Views:AddSetupView/>
+        </DataTemplate>
 
     </Window.Resources>
 

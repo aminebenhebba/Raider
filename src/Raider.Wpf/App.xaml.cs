@@ -47,6 +47,10 @@ namespace Raider.Wpf
                         serviceProvider.GetRequiredService<NavigationStore>(),
                         () => serviceProvider.GetRequiredService<AddSpecialisationViewModel>()));
 
+                    services.AddTransient(serviceProvider => new NavigationService<AddSetupViewModel>(
+                        serviceProvider.GetRequiredService<NavigationStore>(),
+                        () => serviceProvider.GetRequiredService<AddSetupViewModel>()));
+
                     services.AddTransient(serviceProvider => new NavigationService<ClassesViewModel>(
                         serviceProvider.GetRequiredService<NavigationStore>(),
                         () => serviceProvider.GetRequiredService<ClassesViewModel>()));
@@ -107,6 +111,8 @@ namespace Raider.Wpf
                     services.AddTransient(serviceProvider => new AddRaidViewModel(
                         serviceProvider.GetRequiredService<NavigationService<RaidsViewModel>>(),
                         serviceProvider.GetRequiredService<IDataService<Raid>>()));
+
+                    services.AddTransient<AddSetupViewModel>();
                 })
                 .Build();
         }
